@@ -1,0 +1,28 @@
+{
+    "name": "axy/fs-paths",
+    "type": "library",
+    "description": "Manipulation of the file system paths",
+    "keywords": [
+        "Path",
+        "File system",
+        "Posix",
+        "Windows",
+        "URI"
+    ],
+    "homepage": "https://github.com/axypro/fs-paths",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Oleg Grigoriev",
+            "email": "go.vasac@gmail.com"
+        }
+    ],
+    "require": {
+        "php": ">=5.4.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "axy\\fs\\paths\\": ""
+        }
+    }
+}
