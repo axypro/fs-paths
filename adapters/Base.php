@@ -11,5 +11,11 @@ namespace axy\fs\paths\adapters;
  */
 abstract class Base
 {
-
+    /**
+     * Creates a path instance
+     *
+     * @param string $path
+     * @return \axy\fs\paths\Base
+     */
+    abstract public function create($path);
 }

@@ -38,7 +38,7 @@ class Paths
      *        the current system by default
      * @return \axy\fs\paths\adapters\Base
      * @throws \LogicException
-     *         specified adapter is not defined
+     *         specified file system is not defined
      */
     public static function getAdapter($fs = null)
     {
@@ -63,6 +63,23 @@ class Paths
             self::$cache[$fs] = $adapter;
         }
         return self::$cache[$fs];
+    }
+
+    /**
+     * Creates a path instance
+     *
+     * @param string $path
+     *        the path string
+     * @param string $fs [optional]
+     *        the file system (from TYPE_* const)
+     *        the current system by default
+     * @return \axy\fs\paths\Base
+     * @throws \LogicException
+     *         specified file system is not defined
+     */
+    public static function create($path, $fs = null)
+    {
+        return self::getAdapter($fs)->create($path);
     }
 
     /**
