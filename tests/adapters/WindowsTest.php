@@ -21,6 +21,6 @@ class WindowsTest extends \PHPUnit_Framework_TestCase
         $path = Paths::getAdapter(Paths::TYPE_WINDOWS)->create('c:\one\two');
         $this->assertInstanceOf('axy\fs\paths\Windows', $path);
         $this->assertSame(Paths::TYPE_WINDOWS, $path->type);
-        $this->assertSame('c:\one\two', $path->path);
+        $this->assertSame('c:/one/two', $path->path);
     }
 }

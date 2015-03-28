@@ -26,12 +26,14 @@ class Parser
         $file = array_pop($dirs);
         $path->dirs = $dirs;
         $path->dirName = $path->root.implode('/', $dirs);
-        $path->fileName = $file;
-        if (preg_match('~^(.*)\.(.*)$~', $file, $matches)) {
-            $path->baseName = $matches[1];
-            $path->ext = $matches[2];
-        } else {
-            $path->baseName = $path->fileName;
+        if ($file !== '') {
+            $path->fileName = $file;
+            if (preg_match('~^(.*)\.(.*)$~', $file, $matches)) {
+                $path->baseName = $matches[1];
+                $path->ext = $matches[2];
+            } else {
+                $path->baseName = $path->fileName;
+            }
         }
     }
 }

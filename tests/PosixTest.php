@@ -33,7 +33,10 @@ class PosixTest extends \PHPUnit_Framework_TestCase
     public function testParse($sPath, $expected)
     {
         $path = new Posix($sPath);
-        $this->assertEquals($expected, $path->asArray());
+        $actual = $path->asArray();
+        foreach ($expected as $k => $v) {
+            $this->assertSame($expected[$k], $actual[$k], $k);
+        }
     }
 
     /**

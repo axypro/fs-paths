@@ -47,10 +47,10 @@ class PathsTest extends \PHPUnit_Framework_TestCase
         $this->assertInstanceOf('axy\fs\paths\Posix', $posix);
         $this->assertSame(Paths::TYPE_POSIX, $posix->type);
         $this->assertSame('/one/two', $posix->path);
-        $windows = Paths::create('c:\autoexec.bat', 'windows');
+        $windows = Paths::create('c:/autoexec.bat', 'windows');
         $this->assertInstanceOf('axy\fs\paths\Windows', $windows);
         $this->assertSame(Paths::TYPE_WINDOWS, $windows->type);
-        $this->assertSame('c:\autoexec.bat', $windows->path);
+        $this->assertSame('c:/autoexec.bat', $windows->path);
         $url = Paths::create('file:///x.txt', 'url');
         $this->assertInstanceOf('axy\fs\paths\URL', $url);
         $this->assertSame(Paths::TYPE_URL, $url->type);
