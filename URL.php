@@ -7,6 +7,7 @@
 namespace axy\fs\paths;
 
 use axy\fs\paths\params\URL as URLParams;
+use axy\fs\paths\helpers\Parser;
 
 /**
  * The class of URL
@@ -23,6 +24,30 @@ class URL extends Base
      */
     protected function parse()
     {
-        $this->params = new URLParams();
+        $params = new URLParams();
+        $this->params = $params;
+        $s = explode('://', $this->path, 2);
+        if (count($s) === 2) {
+            $this->isAbsolute = true;
+            $params->scheme = $s[0];
+            $s = explode('/', $s[1], 2);
+            $params->authority = $s[0];
+            $this->root = $params->scheme.'://'.$s[0].'/';
+            $rel = isset($s[1]) ? $s[1] : '';
+        } elseif (substr($this->path, 0, 1) === '/') {
+            $this->isAbsolute = true;
+            $this->root = '/';
+            $rel = substr($this->path, 1);
+        } else {
+            $this->isAbsolute = false;
+            $rel = $this->path;
+        }
+        $rel = explode('#', $rel, 2);
+        $params->fragment = isset($rel[1]) ? $rel[1] : null;
+        $rel = $rel[0];
+        $rel = explode('?', $rel, 2);
+        $params->query = isset($rel[1]) ? $rel[1] : null;
+        $this->rel = $rel[0];
+        Parser::splitDirs($this);
     }
 }
