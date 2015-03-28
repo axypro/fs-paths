@@ -22,5 +22,6 @@ class WindowsTest extends \PHPUnit_Framework_TestCase
         $path = new Windows('c:\one\two');
         $this->assertSame(Paths::TYPE_WINDOWS, $path->type);
         $this->assertSame('c:\one\two', $path->path);
+        $this->assertSame('c:\one\two', (string)$path);
     }
 }

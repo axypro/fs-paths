@@ -152,4 +152,12 @@ abstract class Base
      * Parse the path
      */
     abstract protected function parse();
+
+    /**
+     * @return string
+     */
+    public function __toString()
+    {
+        return $this->path;
+    }
 }

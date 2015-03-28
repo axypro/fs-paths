@@ -22,5 +22,6 @@ class URLTest extends \PHPUnit_Framework_TestCase
         $path = new URL('http://s.loc/one');
         $this->assertSame(Paths::TYPE_URL, $path->type);
         $this->assertSame('http://s.loc/one', $path->path);
+        $this->assertSame('http://s.loc/one', (string)$path);
     }
 }

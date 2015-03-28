@@ -22,6 +22,7 @@ class PosixTest extends \PHPUnit_Framework_TestCase
         $path = new Posix('/one/two');
         $this->assertSame(Paths::TYPE_POSIX, $path->type);
         $this->assertSame('/one/two', $path->path);
+        $this->assertSame('/one/two', (string)$path);
     }
 
     /**
