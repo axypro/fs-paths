@@ -14,5 +14,5 @@ class URL extends Base
     /**
      * {@inheritdoc}
      */
-    protected $type = Paths::TYPE_URL;
+    public $type = Paths::TYPE_URL;
 }

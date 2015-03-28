@@ -14,5 +14,10 @@ class Windows extends Base
     /**
      * {@inheritdoc}
      */
-    protected $type = Paths::TYPE_WINDOWS;
+    public $type = Paths::TYPE_WINDOWS;
+
+    /**
+     * @var string
+     */
+    const SUBTYPE_SERVER = 'server';
 }

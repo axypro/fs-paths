@@ -16,5 +16,5 @@ class Posix extends Base
     /**
      * {@inheritdoc}
      */
-    protected $type = Paths::TYPE_POSIX;
+    public $type = Paths::TYPE_POSIX;
 }
