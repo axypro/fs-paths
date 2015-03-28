@@ -133,6 +133,7 @@ abstract class Base
     public function __construct($path)
     {
         $this->path = $path;
+        $this->parse();
     }
 
     /**
@@ -146,4 +147,9 @@ abstract class Base
         $result['params'] = $this->params->asArray();
         return $result;
     }
+
+    /**
+     * Parse the path
+     */
+    abstract protected function parse();
 }

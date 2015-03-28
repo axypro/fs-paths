@@ -6,9 +6,9 @@
 
 namespace axy\fs\paths;
 
-use axy\fs\paths\adapters\Posix;
-use axy\fs\paths\adapters\Windows;
-use axy\fs\paths\adapters\URL;
+use axy\fs\paths\adapters\Posix as PosixAdapter;
+use axy\fs\paths\adapters\Windows as WindowsAdapter;
+use axy\fs\paths\adapters\URL as URLAdapter;
 
 /**
  * Basic class and factory of implementations of path parsers
@@ -49,13 +49,13 @@ class Paths
                     $adapter = self::getAdapter($type);
                     break;
                 case self::TYPE_POSIX:
-                    $adapter = new Posix();
+                    $adapter = new PosixAdapter();
                     break;
                 case self::TYPE_WINDOWS:
-                    $adapter = new Windows();
+                    $adapter = new WindowsAdapter();
                     break;
                 case self::TYPE_URL:
-                    $adapter = new Url();
+                    $adapter = new UrlAdapter();
                     break;
                 default:
                     throw new \LogicException('Path adapter "'.$fs.'" is not defined');

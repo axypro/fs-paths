@@ -6,6 +6,8 @@
 
 namespace axy\fs\paths;
 
+use axy\fs\paths\params\Windows as WindowsParams;
+
 /**
  * The class Windows paths
  */
@@ -20,4 +22,12 @@ class Windows extends Base
      * @var string
      */
     const SUBTYPE_SERVER = 'server';
+
+    /**
+     * {@inheritdoc}
+     */
+    protected function parse()
+    {
+        $this->params = new WindowsParams();
+    }
 }
