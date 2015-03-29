@@ -22,5 +22,7 @@ No requests to the real file system.
 ## Contents
 
 * [Supported types of file systems](doc/types.md)
-* [Functions](doc/functions.md)
-* [Path objects](doc/path.md)
+* [Static, adapter, path instance](doc/features.md)
+* [Paths Class](Paths.md)
+* [Adapters](adapters.md)
+* [path instance](path.md)
