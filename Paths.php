@@ -83,6 +83,85 @@ class Paths
     }
 
     /**
+     * Checks if a path is absolute
+     *
+     * @param string $path
+     * @return bool
+     */
+    public static function isAbsolute($path)
+    {
+        return self::getAdapter()->isAbsolute($path);
+    }
+
+    /**
+     * Returns directory name of a path
+     *
+     * @param string $path
+     * @return string
+     */
+    public static function getDirName($path)
+    {
+        return self::getAdapter()->getDirName($path);
+    }
+
+    /**
+     * Returns file name of a path
+     *
+     * @param string $path
+     * @return string
+     */
+    public static function getFileName($path)
+    {
+        return self::getAdapter()->getFileName($path);
+    }
+
+    /**
+     * Returns file base name of a path
+     *
+     * @param string $path
+     * @param bool $ext [optional]
+     *        if the file extension is not same returns NULL
+     * @return string
+     */
+    public static function getBaseName($path, $ext = false)
+    {
+        return self::getAdapter()->getBaseName($path, $ext);
+    }
+
+    /**
+     * Returns file extension of a path
+     *
+     * @param string $path
+     * @return string
+     */
+    public static function getExt($path)
+    {
+        return self::getAdapter()->getExt($path);
+    }
+
+    /**
+     * Returns directory list of a path
+     *
+     * @param string $path
+     * @return array
+     */
+    public static function getDirs($path)
+    {
+        return self::getAdapter()->getDirs($path);
+    }
+
+    /**
+     * Returns subtype of a path
+     *
+     * @param string $path
+     * @return string
+     */
+    public static function getSubType($path)
+    {
+        return self::getAdapter()->getSubType($path);
+    }
+
+    /**
      * Cache of adapters (type => implementation)
      *
      * @var \axy\fs\paths\adapters\Base[]

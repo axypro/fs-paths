@@ -67,4 +67,27 @@ class PathsTest extends \PHPUnit_Framework_TestCase
         $this->setExpectedException('LogicException');
         Paths::create('./../', 'ZX');
     }
+
+    /**
+     * covers ::isAbsolute
+     * covers ::getDirName
+     * covers ::getFileName
+     * covers ::getBaseName
+     * covers ::getExt
+     * covers ::getDirs
+     * covers ::getSubType
+     */
+    public function testMethods()
+    {
+        $this->assertTrue(Paths::isAbsolute('/file'));
+        $this->assertFalse(Paths::isAbsolute('file'));
+        $this->assertSame('./../dir', Paths::getDirName('./../dir/file.txt'));
+        $this->assertSame('file.txt', Paths::getFileName('./../dir/file.txt'));
+        $this->assertSame('file', Paths::getBaseName('./../dir/file.txt'));
+        $this->assertSame('file', Paths::getBaseName('./../dir/file.txt', 'txt'));
+        $this->assertSame('txt', Paths::getExt('./../dir/file.txt'));
+        $this->assertNull(Paths::getBaseName('./../dir/file.txt', 'html'));
+        $this->assertSame(['.', '..', 'dir'], Paths::getDirs('./../dir/file.txt'));
+        $this->assertNull(Paths::getSubType('file.txt'));
+    }
 }
