@@ -79,4 +79,15 @@ abstract class Base
     {
         return $this->create($path)->ext;
     }
+
+    /**
+     * Returns subtype of a path
+     *
+     * @param string $path
+     * @return string
+     */
+    public function getSubType($path)
+    {
+        return $this->create($path)->subType;
+    }
 }

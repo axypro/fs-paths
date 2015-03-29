@@ -104,4 +104,15 @@ class WindowsTest extends Base
             ['c:\one/file.txt.html', 'html'],
         ];
     }
+
+    /**
+     * covers ::getSubType
+     */
+    public function testGetSubType()
+    {
+        $this->assertNull($this->adapter->getSubType('c:\dir\file.ext'));
+        $this->assertNull($this->adapter->getSubType('\dir\file.ext'));
+        $this->assertNull($this->adapter->getSubType('.\..\dir\file.ext'));
+        $this->assertSame('server', $this->adapter->getSubType('\\\\ServerName\share\file'));
+    }
 }
