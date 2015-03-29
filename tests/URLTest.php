@@ -35,7 +35,7 @@ class URLTest extends \PHPUnit_Framework_TestCase
         $path = new URL($sPath);
         $actual = $path->asArray();
         foreach ($expected as $k => $v) {
-            $this->assertSame($expected[$k], $actual[$k], $k);
+            $this->assertSame($v, $actual[$k], $k);
         }
     }
 

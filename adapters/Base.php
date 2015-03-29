@@ -73,11 +73,22 @@ abstract class Base
      * Returns file extension of a path
      *
      * @param string $path
-     * @return bool
+     * @return string
      */
     public function getExt($path)
     {
         return $this->create($path)->ext;
+    }
+
+    /**
+     * Returns directory list of a path
+     *
+     * @param string $path
+     * @return array
+     */
+    public function getDirs($path)
+    {
+        return $this->create($path)->dirs;
     }
 
     /**

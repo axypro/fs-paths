@@ -103,4 +103,17 @@ class PosixTest extends Base
             ['one/file.txt.html', 'html'],
         ];
     }
+
+    /**
+     * @return array
+     */
+    public function providerGetDirs()
+    {
+        return [
+            ['/one/two/three', ['one', 'two']],
+            ['/one/two/three/', ['one', 'two', 'three']],
+            ['/one', []],
+            ['./../one/two', ['.', '..', 'one']],
+        ];
+    }
 }

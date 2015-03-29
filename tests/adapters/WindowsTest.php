@@ -106,6 +106,19 @@ class WindowsTest extends Base
     }
 
     /**
+     * @return array
+     */
+    public function providerGetDirs()
+    {
+        return [
+            ['c:\one\two\three', ['one', 'two']],
+            ['\\\\ServerName\one\two\three\\', ['one', 'two', 'three']],
+            ['c:\one', []],
+            ['.\..\one\two', ['.', '..', 'one']],
+        ];
+    }
+
+    /**
      * covers ::getSubType
      */
     public function testGetSubType()

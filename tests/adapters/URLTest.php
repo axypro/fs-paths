@@ -97,4 +97,17 @@ class URLTest extends Base
             ['file:///one/file.txt.html', 'html'],
         ];
     }
+
+    /**
+     * @return array
+     */
+    public function providerGetDirs()
+    {
+        return [
+            ['http://example.loc/folder/file.txt?x=1', ['folder']],
+            ['http://example.loc/folder/file.txt/?x=1', ['folder', 'file.txt']],
+            ['./../one/two?x', ['.', '..', 'one']],
+            ['', []],
+        ];
+    }
 }

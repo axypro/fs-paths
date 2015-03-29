@@ -93,4 +93,17 @@ abstract class Base extends \PHPUnit_Framework_TestCase
     }
 
     abstract public function providerGetExt();
+
+    /**
+     * covers ::getDirs
+     * @dataProvider providerGetDirs
+     * @param string $path
+     * @param bool $expected
+     */
+    public function testGetDirs($path, $expected)
+    {
+        $this->assertSame($expected, $this->adapter->getDirs($path));
+    }
+
+    abstract public function providerGetDirs();
 }
