@@ -11,21 +11,12 @@ use axy\fs\paths\Paths;
 /**
  * coversDefaultClass axy\fs\paths\adapters\Windows
  */
-class WindowsTest extends \PHPUnit_Framework_TestCase
+class WindowsTest extends Base
 {
-    /**
-     * @var \axy\fs\paths\adapters\Windows
-     */
-    private $adapter;
-
     /**
      * {@inheritdoc}
      */
-    public function setUp()
-    {
-        $this->adapter = Paths::getAdapter(Paths::TYPE_WINDOWS);
-    }
-
+    protected $type = Paths::TYPE_WINDOWS;
     /**
      * covers ::create
      */
@@ -35,17 +26,6 @@ class WindowsTest extends \PHPUnit_Framework_TestCase
         $this->assertInstanceOf('axy\fs\paths\Windows', $path);
         $this->assertSame(Paths::TYPE_WINDOWS, $path->type);
         $this->assertSame('c:/one/two', $path->path);
-    }
-
-    /**
-     * covers ::isAbsolute
-     * @dataProvider providerIsAbsolute
-     * @param string $path
-     * @param bool $expected
-     */
-    public function testIsAbsolute($path, $expected)
-    {
-        $this->assertSame($expected, $this->adapter->isAbsolute($path));
     }
 
     /**
@@ -62,6 +42,18 @@ class WindowsTest extends \PHPUnit_Framework_TestCase
             ['file:///file.txt', true],
             ['./../file', false],
             ['file', false],
+        ];
+    }
+
+    /**
+     * @return array
+     */
+    public function providerGetDirName()
+    {
+        return [
+            ['c:\one\two\three', 'c:/one/two'],
+            ['c:\one\two\three\\', 'c:/one/two/three'],
+            ['.\..\file.txt', './..'],
         ];
     }
 }

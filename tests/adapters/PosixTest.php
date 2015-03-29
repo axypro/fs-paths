@@ -11,20 +11,12 @@ use axy\fs\paths\Paths;
 /**
  * coversDefaultClass axy\fs\paths\adapters\Posix
  */
-class PosixTest extends \PHPUnit_Framework_TestCase
+class PosixTest extends Base
 {
-    /**
-     * @var \axy\fs\paths\adapters\Posix
-     */
-    private $adapter;
-
     /**
      * {@inheritdoc}
      */
-    public function setUp()
-    {
-        $this->adapter = Paths::getAdapter(Paths::TYPE_POSIX);
-    }
+    protected $type = Paths::TYPE_POSIX;
 
     /**
      * covers ::create
@@ -35,17 +27,6 @@ class PosixTest extends \PHPUnit_Framework_TestCase
         $this->assertInstanceOf('axy\fs\paths\Posix', $path);
         $this->assertSame(Paths::TYPE_POSIX, $path->type);
         $this->assertSame('/one/two', $path->path);
-    }
-
-    /**
-     * covers ::isAbsolute
-     * @dataProvider providerIsAbsolute
-     * @param string $path
-     * @param bool $expected
-     */
-    public function testIsAbsolute($path, $expected)
-    {
-        $this->assertSame($expected, $this->adapter->isAbsolute($path));
     }
 
     /**
@@ -60,6 +41,18 @@ class PosixTest extends \PHPUnit_Framework_TestCase
             ['file:///file.txt', false],
             ['./../file', false],
             ['file', false],
+        ];
+    }
+
+    /**
+     * @return array
+     */
+    public function providerGetDirName()
+    {
+        return [
+            ['/var/www/robots.txt', '/var/www'],
+            ['/var/www/robots.txt/', '/var/www/robots.txt'],
+            ['./../file.txt', './..'],
         ];
     }
 }

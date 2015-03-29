@@ -29,4 +29,15 @@ abstract class Base
     {
         return $this->create($path)->isAbsolute;
     }
+
+    /**
+     * Returns directory name of a path
+     *
+     * @param string $path
+     * @return string
+     */
+    public function getDirName($path)
+    {
+        return $this->create($path)->dirName;
+    }
 }

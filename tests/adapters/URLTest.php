@@ -11,20 +11,12 @@ use axy\fs\paths\Paths;
 /**
  * coversDefaultClass axy\fs\paths\adapters\URL
  */
-class URLTest extends \PHPUnit_Framework_TestCase
+class URLTest extends Base
 {
-    /**
-     * @var \axy\fs\paths\adapters\URL
-     */
-    private $adapter;
-
     /**
      * {@inheritdoc}
      */
-    public function setUp()
-    {
-        $this->adapter = Paths::getAdapter(Paths::TYPE_URL);
-    }
+    protected $type = Paths::TYPE_URL;
 
     /**
      * covers ::create
@@ -38,17 +30,6 @@ class URLTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * covers ::isAbsolute
-     * @dataProvider providerIsAbsolute
-     * @param string $path
-     * @param bool $expected
-     */
-    public function testIsAbsolute($path, $expected)
-    {
-        $this->assertSame($expected, $this->adapter->isAbsolute($path));
-    }
-
-    /**
      * @return array
      */
     public function providerIsAbsolute()
@@ -59,6 +40,18 @@ class URLTest extends \PHPUnit_Framework_TestCase
             ['file:///file', true],
             ['c:\file', false],
             ['./../file', false],
+        ];
+    }
+
+    /**
+     * @return array
+     */
+    public function providerGetDirName()
+    {
+        return [
+            ['http://example.loc/folder/file.txt?x=1', 'http://example.loc/folder'],
+            ['http://example.loc/folder/file.txt/?x=1', 'http://example.loc/folder/file.txt'],
+            ['./../one/two?x', './../one'],
         ];
     }
 }
