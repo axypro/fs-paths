@@ -115,4 +115,13 @@ class PosixTest extends \PHPUnit_Framework_TestCase
             ],
         ];
     }
+
+    public function testClone()
+    {
+        $path = new Posix('/one/two');
+        $pathC = clone $path;
+        $this->assertEquals($path->asArray(), $pathC->asArray());
+        $this->assertNotSame($path->params, $pathC->params);
+        $this->assertInstanceOf('axy\fs\paths\params\Posix', $pathC->params);
+    }
 }

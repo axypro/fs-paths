@@ -160,4 +160,9 @@ abstract class Base
     {
         return $this->path;
     }
+
+    public function __clone()
+    {
+        $this->params = clone $this->params;
+    }
 }
