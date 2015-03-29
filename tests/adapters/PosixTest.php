@@ -55,4 +55,17 @@ class PosixTest extends Base
             ['./../file.txt', './..'],
         ];
     }
+
+    /**
+     * @return array
+     */
+    public function providerGetFileName()
+    {
+        return [
+            ['/var/www/robots.txt', 'robots.txt'],
+            ['/var/www/robots.txt/', null],
+            ['./../file.txt', 'file.txt'],
+            ['./..', '..'],
+        ];
+    }
 }

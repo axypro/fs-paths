@@ -53,4 +53,17 @@ abstract class Base extends \PHPUnit_Framework_TestCase
     }
 
     abstract public function providerGetDirName();
+
+    /**
+     * covers ::getFileName
+     * @dataProvider providerGetFileName
+     * @param string $path
+     * @param bool $expected
+     */
+    public function testGetFileName($path, $expected)
+    {
+        $this->assertSame($expected, $this->adapter->getFileName($path));
+    }
+
+    abstract public function providerGetFileName();
 }

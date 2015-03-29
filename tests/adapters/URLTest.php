@@ -54,4 +54,17 @@ class URLTest extends Base
             ['./../one/two?x', './../one'],
         ];
     }
+
+    /**
+     * @return array
+     */
+    public function providerGetFileName()
+    {
+        return [
+            ['http://example.loc/folder/file.txt?x=1', 'file.txt'],
+            ['http://example.loc/folder/file.txt/?x=1', null],
+            ['./../one/two?x', 'two'],
+            ['./..', '..'],
+        ];
+    }
 }

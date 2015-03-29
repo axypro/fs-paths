@@ -56,4 +56,17 @@ class WindowsTest extends Base
             ['.\..\file.txt', './..'],
         ];
     }
+
+    /**
+     * @return array
+     */
+    public function providerGetFileName()
+    {
+        return [
+            ['c:\one\two\three', 'three'],
+            ['c:\one\two\three\\', null],
+            ['.\..\file.txt', 'file.txt'],
+            ['.\..', '..'],
+        ];
+    }
 }

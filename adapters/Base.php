@@ -40,4 +40,15 @@ abstract class Base
     {
         return $this->create($path)->dirName;
     }
+
+    /**
+     * Returns file name of a path
+     *
+     * @param string $path
+     * @return string
+     */
+    public function getFileName($path)
+    {
+        return $this->create($path)->fileName;
+    }
 }
