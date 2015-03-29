@@ -91,4 +91,17 @@ class WindowsTest extends Base
             ['one', '', null],
         ];
     }
+
+    /**
+     * @return array
+     */
+    public function providerGetExt()
+    {
+        return [
+            ['c:\one/file.txt', 'txt'],
+            ['c:\one/file.', ''],
+            ['c:\one/file', null],
+            ['c:\one/file.txt.html', 'html'],
+        ];
+    }
 }

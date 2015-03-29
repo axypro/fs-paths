@@ -90,4 +90,17 @@ class PosixTest extends Base
             ['one', '', null],
         ];
     }
+
+    /**
+     * @return array
+     */
+    public function providerGetExt()
+    {
+        return [
+            ['one/file.txt', 'txt'],
+            ['one/file.', ''],
+            ['one/file', null],
+            ['one/file.txt.html', 'html'],
+        ];
+    }
 }

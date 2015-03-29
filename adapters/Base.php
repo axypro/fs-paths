@@ -68,4 +68,15 @@ abstract class Base
         }
         return $obj->baseName;
     }
+
+    /**
+     * Returns file extension of a path
+     *
+     * @param string $path
+     * @return bool
+     */
+    public function getExt($path)
+    {
+        return $this->create($path)->ext;
+    }
 }

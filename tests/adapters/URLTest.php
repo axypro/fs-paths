@@ -84,4 +84,17 @@ class URLTest extends Base
             ['http://example.loc/folder/file.p.html?x=1', false, 'file.p'],
         ];
     }
+
+    /**
+     * @return array
+     */
+    public function providerGetExt()
+    {
+        return [
+            ['file:///one/file.txt', 'txt'],
+            ['file:///one/file.', ''],
+            ['file:///one/file', null],
+            ['file:///one/file.txt.html', 'html'],
+        ];
+    }
 }
