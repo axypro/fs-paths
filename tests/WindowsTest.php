@@ -165,6 +165,26 @@ class WindowsTest extends \PHPUnit_Framework_TestCase
                     ],
                 ],
             ],
+            'url' => [
+                'file:///file.txt',
+                [
+                    'path' => 'file:///file.txt',
+                    'type' => 'windows',
+                    'subType' => null,
+                    'isAbsolute' => true,
+                    'root' => 'file:/',
+                    'rel' => '//file.txt',
+                    'dirName' => 'file://',
+                    'fileName' => 'file.txt',
+                    'baseName' => 'file',
+                    'ext' => 'txt',
+                    'dirs' => ['', ''],
+                    'params' => [
+                        'disc' => 'file',
+                        'server' => null,
+                    ],
+                ],
+            ],
         ];
     }
 }

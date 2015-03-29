@@ -18,4 +18,15 @@ abstract class Base
      * @return \axy\fs\paths\Base
      */
     abstract public function create($path);
+
+    /**
+     * Checks if a path is absolute
+     *
+     * @param string $path
+     * @return bool
+     */
+    public function isAbsolute($path)
+    {
+        return $this->create($path)->isAbsolute;
+    }
 }
