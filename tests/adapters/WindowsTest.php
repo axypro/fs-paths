@@ -69,4 +69,26 @@ class WindowsTest extends Base
             ['.\..', '..'],
         ];
     }
+
+    /**
+     * @return array
+     */
+    public function providerGetBaseName()
+    {
+        return [
+            ['c:\www\robots.txt', false, 'robots'],
+            ['c:\www\robots.txt\\', false, null],
+            ['.\..\file.txt', false, 'file'],
+            ['.\..\file.', false, 'file'],
+            ['.\..\file', false, 'file'],
+            ['.\..', false, '.'],
+            ['one.two.three', false, 'one.two'],
+            ['one.two.three', 'three', 'one.two'],
+            ['one.two.three', 'four', null],
+            ['one.', null, null],
+            ['one.', '', 'one'],
+            ['one', null, 'one'],
+            ['one', '', null],
+        ];
+    }
 }

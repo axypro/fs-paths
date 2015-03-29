@@ -51,4 +51,21 @@ abstract class Base
     {
         return $this->create($path)->fileName;
     }
+
+    /**
+     * Returns file base name of a path
+     *
+     * @param string $path
+     * @param bool $ext [optional]
+     *        if the file extension is not same returns NULL
+     * @return string
+     */
+    public function getBaseName($path, $ext = false)
+    {
+        $obj = $this->create($path);
+        if (($ext !== false) && ($obj->ext !== $ext)) {
+            return null;
+        }
+        return $obj->baseName;
+    }
 }
