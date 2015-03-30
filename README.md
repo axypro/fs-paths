@@ -2,8 +2,8 @@
 
 Manipulation of the file system paths.
 
-* GitHub: [axypro/fs-path](https://github.com/axypro/fs-path)
-* Composer: [axy/fs-path](https://packagist.org/packages/axy/fs-path)
+* GitHub: [axypro/fs-paths](https://github.com/axypro/fs-paths)
+* Composer: [axy/fs-paths](https://packagist.org/packages/axy/fs-paths)
 * LICENSE: [MIT](LICENSE)
 * Author: Oleg Grigoriev
 
