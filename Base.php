@@ -151,7 +151,7 @@ abstract class Base
         if ($this->isAbsolute || ($base === null)) {
             return $this->path;
         }
-        $base = $this->createBase($base);
+        $base = $this->createInstance($base);
         $base->normalize();
         $this->subType = $base->subType;
         $this->root = $base->root;
@@ -160,6 +160,20 @@ abstract class Base
         $this->loadParamsResolve($base->params);
         $this->createPath();
         return $this->path;
+    }
+
+    /**
+     * Resolves a path relative of this path
+     *
+     * @param \axy\fs\paths\Base|string $relative [optional]
+     * @param bool $clone [optional]
+     * @return \axy\fs\paths\Base
+     */
+    public function baseResolve($relative, $clone = true)
+    {
+        $relative = $this->createInstance($relative, $clone);
+        $relative->resolve($this);
+        return $relative;
     }
 
     /**
@@ -252,16 +266,19 @@ abstract class Base
     }
 
     /**
-     * @param \axy\fs\paths\Base|string $base
+     * @param \axy\fs\paths\Base|string $path
+     * @param bool $clone [optional]
      * @return \axy\fs\paths\Base
      */
-    protected function createBase($base)
+    protected function createInstance($path, $clone = false)
     {
-        if (!is_object($base)) {
+        if (!is_object($path)) {
             $className = get_class($this);
-            $base = new $className($base);
+            $path = new $className($path);
+        } elseif ($clone) {
+            $path = clone $path;
         }
-        return $base;
+        return $path;
     }
 
     /**

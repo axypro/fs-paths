@@ -216,6 +216,30 @@ class PosixTest extends \PHPUnit_Framework_TestCase
         ];
     }
 
+    /**
+     * covers ::baseRelative
+     */
+    public function testBaseRelative()
+    {
+        $base = new Posix('/one/two/three/../four/five/six.txt');
+        $baseExp = new Posix('/one/two/four/five/six.txt');
+        $path1 = $base->baseResolve('../.././seven');
+        $this->assertSame($baseExp->asArray(), $base->asArray());
+        $exp1 = new Posix('/one/two/seven');
+        $this->assertSame($exp1->asArray(), $path1->asArray());
+        $relative2 = new Posix('./../../seven');
+        $path2 = $base->baseResolve($relative2, false);
+        $this->assertSame($path2, $relative2);
+        $this->assertSame($exp1->asArray(), $path2->asArray());
+        $relative2 = new Posix('./../../eight/../seven');
+        $path2 = $base->baseResolve($relative2);
+        $this->assertNotSame($path2, $relative2);
+        $this->assertSame($exp1->asArray(), $path2->asArray());
+        $exp2 = new Posix('./../../eight/../seven');
+        $this->assertSame($exp2->asArray(), $relative2->asArray());
+        $this->assertSame($baseExp->asArray(), $base->asArray());
+    }
+
     public function testClone()
     {
         $path = new Posix('/one/two');

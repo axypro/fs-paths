@@ -2,7 +2,7 @@
 
 The library supports follows types of file systems: `posix`, `windows` and `url`.
 
-## Posix
+## POSIX
 
 Unix-like file systems.
 

@@ -39,7 +39,6 @@ See [adapters](adapters.md) for details.
 You can create an object for a specific path.
 
 ```php
-
 $path = Paths::create('/var/www/favicon.ico');
 
 $path->isAbsolute(); // true
@@ -48,3 +47,27 @@ $path->dirs; // ["var", "www"]
 ```
 
 See [path instance](path.md) for detail.
+
+## Optimality
+
+Static methods of `Paths` and methods of adapters create path-objects inside.
+
+```php
+$basePath = '/var/www';
+
+$relatives = ['file.txt', '../log', './robots.txt'];
+foreach ($relatives as $path) {
+    echo Paths::resolve($base, $path);
+}
+```
+
+In this case, each time an object is created and a path is parsed.
+
+In the next example, analysis of basic path will be made only once.
+ 
+```php
+$basePath = Paths::create('/var/www');
+foreach ($relatives as $path) {
+    $basePath->baseResolve($path);
+}
+```

@@ -26,7 +26,7 @@ class URL extends Base
     {
         if ($this->isAbsolute && $base && ($this->params->scheme === null)) {
             $this->normalize();
-            $base = $this->createBase($base);
+            $base = $this->createInstance($base);
             $params = $base->params;
             $this->loadParamsResolve($params);
             if ($params->scheme !== null) {
