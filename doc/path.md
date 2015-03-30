@@ -102,14 +102,14 @@ For absolute Windows-paths:
 
 For absolute URL paths:
 
-* `http://example.loc/index.html?id=5` - `http://example.loc/
+* `http://example.loc/index.html?id=5` - `http://example.loc/`
 * `/index.html?id=5` - `/`
 
 ### `rel`
 
 The part of paths relative to the root.
 
-For `c:\folder\file.txt` it is `folder\file.txt` on Windows.
+For `c:\folder\file.txt` it is `folder/file.txt` on Windows.
 
 For relative paths `rel` equals `path`.
 

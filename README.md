@@ -46,7 +46,7 @@ $win->isAbsolute('c:\config.sys'); // True
 
 /* Objects */
 $url = Paths::getAdapter('url')->create('http://site.loc/news/view.php?id=10');
-$url->resolve('../index.html?#footer'); // http://site.loc/index.html#footer
+$url->resolve('../index.html#footer'); // http://site.loc/index.html#footer
 
 $url->params->fragment; // "footer"
 ```
