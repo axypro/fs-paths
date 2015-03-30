@@ -122,4 +122,18 @@ class URLTest extends Base
             ['one/../../../two', '../../two'],
         ];
     }
+
+    /**
+     * @return array
+     */
+    public function providerResolve()
+    {
+        return [
+            ['/one/two/', '/three/four', '/three/four'],
+            ['/one/two/', 'three/four', '/one/two/three/four'],
+            ['/one/two/', '../three/four', '/one/three/four'],
+            ['file:///one/two', '/three/four', 'file:///three/four'],
+            ['http://a.loc:80/one/two/?x=5#h1', '/three/?y=3#h3', 'http://a.loc:80/three/?y=3#h3'],
+        ];
+    }
 }

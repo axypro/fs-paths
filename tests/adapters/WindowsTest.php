@@ -141,4 +141,15 @@ class WindowsTest extends Base
             ['one\..\..\..\two', '../../two'],
         ];
     }
+
+    /**
+     * @return array
+     */
+    public function providerResolve()
+    {
+        return [
+            ['c:\one\two\\', 'c:\three\four', 'c:/three/four'],
+            ['c:\one\two\\', 'three\four\\', 'c:/one/two/three/four/'],
+        ];
+    }
 }

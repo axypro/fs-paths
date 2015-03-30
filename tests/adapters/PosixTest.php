@@ -129,4 +129,17 @@ class PosixTest extends Base
             ['one/../../../two', '../../two'],
         ];
     }
+
+    /**
+     * @return array
+     */
+    public function providerResolve()
+    {
+        return [
+            ['/one/two', '/three/four', '/three/four'],
+            ['/one/two', 'three/four', '/one/three/four'],
+            ['/one/two/', 'three/four', '/one/two/three/four'],
+            ['/one/two/', '../three/four', '/one/three/four'],
+        ];
+    }
 }

@@ -119,4 +119,18 @@ abstract class Base extends \PHPUnit_Framework_TestCase
     }
 
     abstract public function providerNormalize();
+
+    /**
+     * covers ::resolve
+     * @dataProvider providerResolve
+     * @param string $base
+     * @param string $relative
+     * @param bool $expected
+     */
+    public function testResolve($base, $relative, $expected)
+    {
+        $this->assertSame($expected, $this->adapter->resolve($base, $relative));
+    }
+
+    abstract public function providerResolve();
 }

@@ -112,4 +112,16 @@ abstract class Base
     {
         return $this->create($path)->resolve();
     }
+
+    /**
+     * Resolves a path relative a basic path
+     *
+     * @param string $base
+     * @param string $relative
+     * @return string
+     */
+    public function resolve($base, $relative)
+    {
+        return $this->create($relative)->resolve($base);
+    }
 }
