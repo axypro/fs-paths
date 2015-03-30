@@ -187,4 +187,79 @@ class WindowsTest extends \PHPUnit_Framework_TestCase
             ],
         ];
     }
+
+    /**
+     * covers ::resolve
+     * @dataProvider providerResolve
+     * @param string $path
+     * @param string $base
+     * @param string $expected
+     */
+    public function testResolve($path, $base, $expected)
+    {
+        $p1 = new Windows($path);
+        $this->assertSame($expected, $p1->resolve($base));
+        $test = new Windows($expected);
+        $this->assertSame($test->asArray(), $p1->asArray());
+        if ($base !== null) {
+            $base = new Windows($base);
+            $p2 = new Windows($path);
+            $this->assertSame($expected, $p2->resolve($base));
+            $this->assertSame($test->asArray(), $p2->asArray());
+        }
+    }
+
+    /**
+     * @return array
+     */
+    public function providerResolve()
+    {
+        return [
+            'ok' => [
+                'c:\one\two\three',
+                null,
+                'c:/one/two/three',
+            ],
+            'normalize' => [
+                'c:\one\two\..\four\.\five',
+                null,
+                'c:/one/four/five',
+            ],
+            'root' => [
+                '\\\\Server\one\..\..\..\two',
+                null,
+                '//Server/two',
+            ],
+            'absolute' => [
+                'c:\one\two',
+                'c:\base\path',
+                'c:/one/two',
+            ],
+            'relative' => [
+                'one\two',
+                'c:\base\path\\',
+                'c:/base/path/one/two',
+            ],
+            'relativeF' => [
+                'one\two',
+                'c:\base\path',
+                'c:/base/one/two',
+            ],
+            'up' => [
+                '.\..\file',
+                'one\two\three',
+                'one/file',
+            ],
+            'up2' => [
+                '.\..\..\..\..\file',
+                'one\two\three',
+                '../../file',
+            ],
+            'up3' => [
+                '.\..\..\..\..\file',
+                '\one\two\three',
+                '/file',
+            ],
+        ];
+    }
 }

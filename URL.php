@@ -22,6 +22,27 @@ class URL extends Base
     /**
      * {@inheritdoc}
      */
+    public function resolve($base = null)
+    {
+        if ($this->isAbsolute && $base && ($this->params->scheme === null)) {
+            $this->normalize();
+            $base = $this->createBase($base);
+            $params = $base->params;
+            $this->loadParamsResolve($params);
+            if ($params->scheme !== null) {
+                $prefix = $params->scheme.'://'.$params->authority;
+                $this->root = $prefix.'/';
+                $this->dirName = $prefix.$this->dirName;
+            }
+            $this->createPath();
+            return $this->path;
+        }
+        return parent::resolve($base);
+    }
+
+    /**
+     * {@inheritdoc}
+     */
     protected function parse()
     {
         $params = new URLParams();
@@ -49,5 +70,29 @@ class URL extends Base
         $params->query = isset($rel[1]) ? $rel[1] : null;
         $this->rel = $rel[0];
         Parser::splitDirs($this);
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    protected function loadParamsResolve($params)
+    {
+        $this->params->scheme = $params->scheme;
+        $this->params->authority = $params->authority;
+    }
+
+    /**
+     * @return string
+     */
+    protected function createPath()
+    {
+        parent::createPath();
+        $params = $this->params;
+        if ($params->query !== null) {
+            $this->path .= '?'.$params->query;
+        }
+        if ($params->fragment !== null) {
+            $this->path .= '#'.$params->fragment;
+        }
     }
 }

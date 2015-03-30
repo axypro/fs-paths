@@ -113,4 +113,59 @@ class URLTest extends \PHPUnit_Framework_TestCase
             ],
         ];
     }
+
+    /**
+     * covers ::resolve
+     * @dataProvider providerResolve
+     * @param string $path
+     * @param string $base
+     * @param string $expected
+     */
+    public function testResolve($path, $base, $expected)
+    {
+        $p1 = new URL($path);
+        $this->assertSame($expected, $p1->resolve($base));
+        $test = new URL($expected);
+        $this->assertSame($test->asArray(), $p1->asArray());
+        if ($base !== null) {
+            $base = new URL($base);
+            $p2 = new URL($path);
+            $this->assertSame($expected, $p2->resolve($base));
+            $this->assertSame($test->asArray(), $p2->asArray());
+        }
+    }
+
+    /**
+     * @return array
+     */
+    public function providerResolve()
+    {
+        return [
+            'ok' => [
+                '/one/two',
+                null,
+                '/one/two',
+            ],
+            'normalize' => [
+                '/one/../two',
+                null,
+                '/two'
+            ],
+            'base' => [
+                '../file?y=2',
+                'http://example.loc/one/two/three?x=1',
+                'http://example.loc/one/file?y=2',
+            ],
+            'baseFull' => [
+                '/x/y/?x=3',
+                'http://example.loc/one/two/three?x=1',
+                'http://example.loc/x/y/?x=3',
+            ],
+            'baseAbsolute' => [
+                'http://site.loc/x/y/?x=3',
+                'http://example.loc/one/two/three?x=1',
+                'http://site.loc/x/y/?x=3',
+            ],
+        ];
+    }
 }

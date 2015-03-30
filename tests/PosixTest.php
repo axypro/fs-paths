@@ -116,6 +116,106 @@ class PosixTest extends \PHPUnit_Framework_TestCase
         ];
     }
 
+    /**
+     * covers ::resolve
+     * @dataProvider providerResolve
+     * @param string $path
+     * @param string $base
+     * @param string $expected
+     */
+    public function testResolve($path, $base, $expected)
+    {
+        $p1 = new Posix($path);
+        $this->assertSame($expected, $p1->resolve($base));
+        $test = new Posix($expected);
+        $this->assertSame($test->asArray(), $p1->asArray());
+        if ($base !== null) {
+            $base = new Posix($base);
+            $p2 = new Posix($path);
+            $this->assertSame($expected, $p2->resolve($base));
+            $this->assertSame($test->asArray(), $p2->asArray());
+        }
+    }
+
+    /**
+     * @return array
+     */
+    public function providerResolve()
+    {
+        return [
+            'ok' => [
+                '/one/two/three',
+                null,
+                '/one/two/three',
+            ],
+            'normalize' => [
+                '/one/two/../four/./five',
+                null,
+                '/one/four/five',
+            ],
+            'root' => [
+                '/one/../../../two',
+                null,
+                '/two',
+            ],
+            'rootR' => [
+                'one/../two',
+                null,
+                'two',
+            ],
+            'absolute' => [
+                '/one/two',
+                '/base/path',
+                '/one/two',
+            ],
+            'relative' => [
+                'one/two',
+                '/base/path/',
+                '/base/path/one/two',
+            ],
+            'relativeF' => [
+                'one/two',
+                '/base/path',
+                '/base/one/two',
+            ],
+            'up' => [
+                './../file',
+                'one/two/three',
+                'one/file',
+            ],
+            'upDir' => [
+                './../file',
+                'one/two/three/',
+                'one/two/file',
+            ],
+            'up2' => [
+                './../../../../file',
+                'one/two/three',
+                '../../file',
+            ],
+            'up3' => [
+                './../../../../file',
+                '/one/two/three',
+                '/file',
+            ],
+            'last' => [
+                '/one/two/three/..',
+                null,
+                '/one/two/',
+            ],
+            'last2' => [
+                '/one/two/three/.',
+                null,
+                '/one/two/three/',
+            ],
+            'baseNorm' => [
+                './../file',
+                '/one/two/../three/four/file.txt',
+                '/one/three/file',
+            ],
+        ];
+    }
+
     public function testClone()
     {
         $path = new Posix('/one/two');

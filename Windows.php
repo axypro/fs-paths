@@ -49,4 +49,12 @@ class Windows extends Base
         }
         Parser::splitDirs($this);
     }
+
+    /**
+     * {@inheritdoc}
+     */
+    protected function loadParamsResolve($params)
+    {
+        $this->params = clone $params;
+    }
 }

@@ -7,7 +7,8 @@
         "File system",
         "Posix",
         "Windows",
-        "URI"
+        "URI",
+        "URL"
     ],
     "homepage": "https://github.com/axypro/fs-paths",
     "license": "MIT",

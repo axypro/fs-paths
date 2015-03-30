@@ -6,6 +6,8 @@
 
 namespace axy\fs\paths;
 
+use axy\fs\paths\helpers\Resolver;
+
 /**
  * The basic class of path instances
  *
@@ -137,13 +139,40 @@ abstract class Base
     }
 
     /**
+     * Resolves and normalizes the path
+     *
+     * @param \axy\fs\paths\Base|string $base [optional]
+     *        a base path (an instance or a string)
+     * @return string
+     */
+    public function resolve($base = null)
+    {
+        $this->normalize();
+        if ($this->isAbsolute || ($base === null)) {
+            return $this->path;
+        }
+        $base = $this->createBase($base);
+        $base->normalize();
+        $this->root = $base->root;
+        $this->isAbsolute = $base->isAbsolute;
+        $this->loadDirs(Resolver::resolve($base->dirs, $this->dirs, $base->isAbsolute));
+        $this->loadParamsResolve($base->params);
+        $this->createPath();
+        return $this->path;
+    }
+
+    /**
      * Returns the representation as an array
      *
      * @return array
      */
     public function asArray()
     {
-        $result = (array)$this;
+        $result = [];
+        $f = ['path', 'type', 'subType', 'isAbsolute', 'root', 'rel', 'dirName', 'fileName', 'baseName', 'ext', 'dirs'];
+        foreach ($f as $k) {
+            $result[$k] = $this->$k;
+        }
         $result['params'] = $this->params->asArray();
         return $result;
     }
@@ -165,4 +194,76 @@ abstract class Base
     {
         $this->params = clone $this->params;
     }
+
+    /**
+     * Normalizes the path
+     */
+    protected function normalize()
+    {
+        if ($this->normalized) {
+            return;
+        }
+        $this->normalized = true;
+        $dirs = $this->dirs;
+        if (($this->fileName === '..') || ($this->fileName === '.')) {
+            $dirs[] = $this->fileName;
+            $this->fileName = null;
+            $this->baseName = null;
+            $this->ext = null;
+        }
+        $dirs = Resolver::normalize($dirs, $this->isAbsolute, $changed);
+        if ($changed) {
+            $this->loadDirs($dirs);
+        }
+    }
+
+    /**
+     * @param array $dirs
+     */
+    protected function loadDirs($dirs)
+    {
+        $this->dirs = $dirs;
+        $this->dirName = (string)$this->root;
+        if (!empty($dirs)) {
+            $dirs = implode('/', $dirs);
+            $this->rel = $dirs.'/'.$this->fileName;
+            $this->dirName .= $dirs;
+        } else {
+            $this->rel = $this->fileName;
+        }
+        $this->createPath();
+    }
+
+    /**
+     * @param \axy\fs\paths\params\Base $params
+     */
+    protected function loadParamsResolve($params)
+    {
+    }
+
+    /**
+     * @return string
+     */
+    protected function createPath()
+    {
+        $this->path = $this->root.$this->rel;
+    }
+
+    /**
+     * @param \axy\fs\paths\Base|string $base
+     * @return \axy\fs\paths\Base
+     */
+    protected function createBase($base)
+    {
+        if (!is_object($base)) {
+            $className = get_class($this);
+            $base = new $className($base);
+        }
+        return $base;
+    }
+
+    /**
+     * @var bool
+     */
+    protected $normalized = false;
 }
