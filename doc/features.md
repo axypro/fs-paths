@@ -10,7 +10,7 @@ The class `axy\fs\paths\Paths` provides static methods for work with paths.
 use axy\fs\paths\Paths;
 
 Paths::isAbsolute('/var/www/favicon.ico'); // true
-Paths::getDirName('/var/www/favicon.ico'); // favicon.ico
+Paths::getFileName('/var/www/favicon.ico'); // favicon.ico
 Paths::resolve('/one/two/three', './../four'); // /one/four
 ```
 
@@ -48,7 +48,7 @@ $path->dirs; // ["var", "www"]
 
 See [path instance](path.md) for detail.
 
-## Optimality
+## Efficiency
 
 Static methods of `Paths` and methods of adapters create path-objects inside.
 
@@ -63,7 +63,7 @@ foreach ($relatives as $path) {
 
 In this case, each time an object is created and a path is parsed.
 
-In the next example, analysis of basic path will be made only once.
+In the next example, analysis of the basic path will be made only once.
  
 ```php
 $basePath = Paths::create('/var/www');
@@ -71,3 +71,4 @@ foreach ($relatives as $path) {
     $basePath->baseResolve($path);
 }
 ```
+

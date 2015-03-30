@@ -36,8 +36,8 @@ $current = Paths::getAdapter();
 create(string $path [, string $fs]): Base
 ```
 
-Returns a path instance for specified file system.
-If the file system is not specified the path for current file system will be returned.
+Returns a path instance for the specified file system.
+If the file system is not specified the instance for the current file system will be returned.
 
 ```php
 $path = Paths::create('/home/user/file.txt');
@@ -54,9 +54,12 @@ echo $path->ext; // "txt"
 * `getExt(string $path):string`
 * `getDirs(string $path):array`
 * `getSubType(string $path):string`
+* `normalize(string $path):string`
+* `resolve(string $base, string $relative):string`
 
 All these methods simply delegate the task to the current adapter.
 
 `Paths::getDirName($path)` is equivalent of `Paths::getAdapter()->getDirName($path)`.
 
 See [documentation of adapters](adapters.md) for details.
+

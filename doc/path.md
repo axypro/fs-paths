@@ -1,6 +1,6 @@
 # Path Instance
 
-Instance of the class `axy\fs\paths\Base` is wrapper on a string of path.
+An instance of the class `axy\fs\paths\Base` is wrapper on a string of path.
 It allows to get information of the path and manipulated it.
 
 ## Create
@@ -10,9 +10,11 @@ There are several ways for create an instance.
 ```php
 use axy\fs\paths\Paths;
 
-$path1 = Paths::create('/file.txt'); // Path for current environment
-$path2 = Paths::create('/file.txt', Paths::TYPE_POSIX); // Path for specified environment
+$path1 = Paths::create('/file.txt'); // Path for the current environment
+$path2 = Paths::create('/file.txt', Paths::TYPE_POSIX); // Path for the specified environment
 ```
+
+Or
 
 ```php
 $adapter = Paths::getAdapter();
@@ -21,6 +23,8 @@ $adapter = Paths::getAdapter();
 
 $path = $adapter->create('/file.txt');
 ```
+
+Or
 
 ```php
 use axy\fs\paths\Posix;
@@ -31,7 +35,7 @@ $path = new Posix('/file.txt');
 ## Properties
 
 The wrapper has properties that describe the path.
-For optimality they are implemented as public properties.
+For efficiency they are implemented as public properties.
 Modify them directly is not recommended.
 
 ### `type`
@@ -59,7 +63,7 @@ $path = Paths::create('./../one.txt');
 echo $path->path; // "./../one.txt"
 ```
 
-For Windows slashes will be replaced to `/`.
+On Windows slashes will be replaced to `/`.
 
 ```php
 $path = Paths::create('c:\folder\file.txt', 'windows');
@@ -78,19 +82,19 @@ Absolute for Windows:
 * `\folder\file.txt`
 * `\\ServerName\share\file.txt`
 
-For URL:
+For URL (not absolute URL, but absolute path in terms of the library):
 
 * `http://example.loc/index.html?id=5`
 * `/index.html?id=5`
 
 ### `root`
 
-The root of path.
+Root of the path.
 For relative paths always is `NULL`.
 
-For absolute POSIX paths is `/`.
+For absolute POSIX-paths is `/`.
 
-For absolute Windows paths:
+For absolute Windows-paths:
 
 * `c:\config.sys` - `c:/`
 * `\folder\file.txt` - `/`
@@ -103,7 +107,7 @@ For absolute URL paths:
 
 ### `rel`
 
-The part of paths relative the root.
+The part of paths relative to the root.
 
 For `c:\folder\file.txt` it is `folder\file.txt` on Windows.
 
@@ -121,17 +125,15 @@ If it contains slash - as directory.
 
 * Directory name of `/var/www/file.txt/` - `/var/www/file.txt`
 
-The library looks only at the string, not the real file system.
-Directory name for a path `/var/www` will be `/var` and `www` consider as file name.
+See [File Name and Directory Name](dirname.md).
 
 ### `fileName`
 
-The file name without the directory.
+The file name without the directory name.
 
 For URL `http://example.com/folder/file.html?id=5` file name is `file.html`.
 
 For `/var/www/file.txt/` is `NULL`.
-See `dirName` for details.
 
 ### `baseName`
 
@@ -149,16 +151,16 @@ The extension of the file.
 * for `/var/file.txt` is `txt`
 * for `/var/file.txt.html` is `html`
 * for `/var/file.txt.html/` is `NULL`
-* for `http://example.com/folder/file.html?id=5` is `html`
+* for `http://example.com/folder/file.php?id=5` is `php`
 
-Empty extension and no extensions are different cases
+Empty extension and no extensions are different cases:
 
-* for `/var/file` is `NULL`
+* for `/var/file` the `ext` is `NULL`
 * for `/var/file.` is empty string
 
 ### `dirs`
 
-The list of components of directory name.
+The list of components of the directory name.
 
 For `c:\one\two\three\four.txt` it is `["one", "two", "three"]`.
 
@@ -176,7 +178,7 @@ For `windows`:
 
 For `url` (`http://user:password@example.loc:8080/folder/file.html?x=10#h1`):
 
-* `scheme` (`http` from example)
+* `scheme` (`http` from the example)
 * `authority` - `user:password@example.loc:8080`
 * `query` - `x=10`
 * `fragment` - `h1`
@@ -187,3 +189,4 @@ NULL should be distinguished from the empty string:
 
 * `/folder/file.html` - `query` is NULL
 * `/folder/file.html?` - `query` is empty string
+

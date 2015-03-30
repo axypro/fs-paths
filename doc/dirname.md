@@ -1,17 +1,19 @@
 # File Name and Directory Name
 
+For some actions we need to know, whether we are dealing with a file or a directory.
+
 The library works with abstract paths as strings.
 It does not make requests to the real file system.
-The library can not know whether the path is a the file or directory.
+It can not find out which is indicated by a path, and whether the path exists.
 
-Dy default the library understands "the path" as the path to a file.
+By default the library understands "the path" as the path to a file.
 If a path ends with the directory separator (usually a slash) then it is path to a directory.
 
 * `/var/www/robots.txt` - here directory name is `/var/www` and file name is `robots.txt`.
 * `/var/www/` - it is directory name (file name is not defined).
 
-This can lead to unexpected behavior.
-For example the path `/var/www` for the library is the file `www` in the directory `/var`.
+Because of this unexpected behavior can occur.
+For example the path `/var/www` for the library is the file `www` inside the directory `/var`.
 
 This affects the behavior of algorithms [normalization and resolving](resolve.md).
 
@@ -41,4 +43,5 @@ The library works in this case as well as browser.
 ## `..` and `.`
 
 Such path components as `..` and `.` handled and normalized correctly.
-`/one/two/..` is directory (leads to `/one/two/../`).
+`/one/two/..` is directory (equivalent to `/one/two/../`).
+

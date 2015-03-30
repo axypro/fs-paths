@@ -6,6 +6,7 @@
  * @author Oleg Grigoriev <go.vasac@gmail.com>
  * @license https://raw.github.com/axypro/fs-paths/master/LICENSE MIT
  * @link https://github.com/axypro/fs-paths repository
+ * @link https://github.com/axypro/fs-paths/blob/master/README.md documentation
  * @uses PHP5.4+
  */
 

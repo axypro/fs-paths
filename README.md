@@ -24,6 +24,29 @@ No requests to the real file system.
 * [Supported types of file systems](doc/types.md)
 * [Static, adapter, path instance](doc/features.md)
 * [File Name and Directory Name](doc/dirname.md)
-* [Paths Class](Paths.md)
-* [Adapters](adapters.md)
-* [path instance](path.md)
+* [Paths Class](doc/Paths.md)
+* [Adapters](doc/adapters.md)
+* [path instance](doc/path.md)
+
+## Examples
+
+```php
+use axy\fs\paths\Paths;
+
+/* Static methods */
+Paths::normalize('/one/two/../three'); // "/one/three"
+
+/* Adapters */
+$posix = Paths::getAdapter('posix');
+$win = Paths::getAdapter('windows');
+
+$posix->isAbsolute('c:\config.sys'); // False
+$win->isAbsolute('c:\config.sys'); // True
+
+/* Objects */
+$url = Paths::getAdapter('url')->create('http://site.loc/news/view.php?id=10');
+$url->resolve('../index.html?#footer'); // http://site.loc/index.html#footer
+
+$url->params->fragment; // "footer"
+```
+

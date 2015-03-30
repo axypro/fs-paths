@@ -1,4 +1,4 @@
-# Algorithm for Resolving
+# Algorithms for Resolving and Normalization
 
 ## Normalization
 
@@ -24,7 +24,7 @@ For relative it is possible.
 $path->resolve($base);
 ```
 
-This method resolves the current path (`$path`) relative the basic path (`$base`).
+This method resolves the current path (`$path`) relative to the basic path (`$base`).
 
 For example:
 
@@ -69,7 +69,7 @@ In this case, using the `..` you can rise above the begin.
 
 For example:
 
-1. Current directory is `/one/two`.
+1. Current directory is `/one/two/`.
 2. Relative path is `./three/four.html`.
 3. `four.html` contains relative link `../../index.html`.
 
@@ -79,13 +79,10 @@ Result is `/one/index.html`.
 If resolve (3) relative (2) then result will be `../index.html`.
 Resolving it relative (1) obtain again `/one/index.html`.
 
-### Directory name and file name
+### Directory Name and File Name
 
-The "path" is path to a file.
-If the basic path is `/one/two/three.html` then basic directory is `/one/two`.
-If the relative path is `../file.txt` then resulting path will be `/one/file.txt`.
+The resolving algorithm depends on whether the base path is a file or a directory.
 
-In the path `/var/www` the directory is `/var` and `www` is file name (when in fact it is a directory).
-Relative path `../file.txt` lead to `/file.txt` (not `/var/file.txt`).
+See [File Name and Directory Name](dirname.md) for details.
 
-Use trailing slash to specify directory (`/var/www/`).
+

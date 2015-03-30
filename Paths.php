@@ -12,6 +12,8 @@ use axy\fs\paths\adapters\URL as URLAdapter;
 
 /**
  * Basic class and factory of implementations of path parsers
+ *
+ * @link https://github.com/axypro/fs-paths/blob/master/doc/Paths.md documentation
  */
 class Paths
 {

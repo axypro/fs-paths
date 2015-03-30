@@ -26,7 +26,7 @@ The Windows-like file system has follow types of absolute paths:
 * `\\ServerName\share\folder\file.txt`
 
 Root in the first example is `c:\`.
-In the third is `\\ServerName`.
+In the third is `\\ServerName\`.
 
 * Directories separated by `/` or by `\`.
 * Slashes `/` and `\` are equivalent.
@@ -42,4 +42,5 @@ Full view: `scheme://authority/path?query#fragment`
 
 Example: `http://user:password@examle.loc:8080/folder/file.html?id=5#h1`.
 
-The library works with `path` (`/folder/file.html` is the example).
+The library works with `path` (`/folder/file.html` for the example).
+

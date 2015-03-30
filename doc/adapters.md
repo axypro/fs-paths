@@ -11,7 +11,7 @@ $url = Paths::getAdapter('url');
 $current = Paths::getAdapter(); // an adapter for the current environment
 ```
 
-## Create Paths
+## Create Path Instance
 
 ```php
 $path = $adapter->create('./../file.txt');
@@ -19,7 +19,7 @@ $path = $adapter->create('./../file.txt');
 echo $path->isAbsolute; // false
 ```
 
-Creates [a path instance](path.md) for specific file system.
+Creates [a path instance](path.md) for the specific file system.
 
 ## Methods for Path Manipulation
 
@@ -59,3 +59,24 @@ foreach ($paths as $path) {
 ```
 
 It processed only txt-files.
+
+### `normalize(string $path):string`
+
+[Normalizes](resolve.md) a path.
+
+```php
+$path = '/one/two/../three/./four';
+
+$adapter->normalize($path); // "/one/three/four"
+```
+
+### `resolve(string $base, string $relative):string`
+
+[Resolves](resolve.md) a path relative to the base path.
+
+```php
+$base = '/var/www/site.com/htdocs/';
+$relative = './../config/production.xml';
+$path = $adapter->relative($base, $relative); // "/var/www/site.com/config/production.xml"
+```
+
