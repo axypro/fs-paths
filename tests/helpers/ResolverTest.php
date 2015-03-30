@@ -82,8 +82,8 @@ class ResolverTest extends \PHPUnit_Framework_TestCase
      * covers ::resolve
      * @dataProvider providerResolve
      * @param array $base
-     * @param bool $relative
-     * @param array $absolute
+     * @param array $relative
+     * @param bool $absolute
      * @param array $expected
      */
     public function testResolve($base, $relative, $absolute, $expected)

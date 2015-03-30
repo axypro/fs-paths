@@ -237,6 +237,7 @@ abstract class Base
 
     /**
      * @param \axy\fs\paths\params\Base $params
+     * @SuppressWarnings(PHPMD.UnusedFormalParameter)
      */
     protected function loadParamsResolve($params)
     {

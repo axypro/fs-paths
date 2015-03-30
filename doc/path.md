@@ -96,7 +96,7 @@ For absolute Windows paths:
 * `\folder\file.txt` - `/`
 * `\\ServerName\share\file.txt` - `//ServerName/`
 
-For absoulte URL paths:
+For absolute URL paths:
 
 * `http://example.loc/index.html?id=5` - `http://example.loc/
 * `/index.html?id=5` - `/`
