@@ -113,6 +113,40 @@ class PosixTest extends \PHPUnit_Framework_TestCase
                     'params' => [],
                 ],
             ],
+            'last' => [
+                '/one/two/..',
+                [
+                    'path' => '/one/two/../',
+                    'type' => 'posix',
+                    'subType' => null,
+                    'isAbsolute' => true,
+                    'root' => '/',
+                    'rel' => 'one/two/../',
+                    'dirName' => '/one/two/..',
+                    'fileName' => null,
+                    'baseName' => null,
+                    'ext' => null,
+                    'dirs' => ['one', 'two', '..'],
+                    'params' => [],
+                ],
+            ],
+            'last2' => [
+                '/one/two/.',
+                [
+                    'path' => '/one/two/./',
+                    'type' => 'posix',
+                    'subType' => null,
+                    'isAbsolute' => true,
+                    'root' => '/',
+                    'rel' => 'one/two/./',
+                    'dirName' => '/one/two/.',
+                    'fileName' => null,
+                    'baseName' => null,
+                    'ext' => null,
+                    'dirs' => ['one', 'two', '.'],
+                    'params' => [],
+                ],
+            ],
         ];
     }
 

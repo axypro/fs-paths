@@ -66,7 +66,7 @@ class WindowsTest extends Base
             ['c:\one\two\three', 'three'],
             ['c:\one\two\three\\', null],
             ['.\..\file.txt', 'file.txt'],
-            ['.\..', '..'],
+            ['.\..', null],
         ];
     }
 
@@ -81,7 +81,7 @@ class WindowsTest extends Base
             ['.\..\file.txt', false, 'file'],
             ['.\..\file.', false, 'file'],
             ['.\..\file', false, 'file'],
-            ['.\..', false, '.'],
+            ['.\..', false, null],
             ['one.two.three', false, 'one.two'],
             ['one.two.three', 'three', 'one.two'],
             ['one.two.three', 'four', null],

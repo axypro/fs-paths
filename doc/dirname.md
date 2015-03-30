@@ -37,3 +37,8 @@ The current directory would be `/news/`.
 And the link `../archive/` would lead to `http://example.loc/archive/`.
 
 The library works in this case as well as browser.
+
+## `..` and `.`
+
+Such path components as `..` and `.` handled and normalized correctly.
+`/one/two/..` is directory (leads to `/one/two/../`).

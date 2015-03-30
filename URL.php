@@ -69,7 +69,9 @@ class URL extends Base
         $rel = explode('?', $rel, 2);
         $params->query = isset($rel[1]) ? $rel[1] : null;
         $this->rel = $rel[0];
-        Parser::splitDirs($this);
+        if (Parser::splitDirs($this)) {
+            $this->createPath();
+        }
     }
 
     /**

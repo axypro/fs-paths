@@ -111,6 +111,50 @@ class URLTest extends \PHPUnit_Framework_TestCase
                     ],
                 ],
             ],
+            'last' => [
+                '/one/two/..',
+                [
+                    'path' => '/one/two/../',
+                    'type' => 'url',
+                    'subType' => null,
+                    'isAbsolute' => true,
+                    'root' => '/',
+                    'rel' => 'one/two/../',
+                    'dirName' => '/one/two/..',
+                    'fileName' => null,
+                    'baseName' => null,
+                    'ext' => null,
+                    'dirs' => ['one', 'two', '..'],
+                    'params' => [
+                        'scheme' => null,
+                        'authority' => null,
+                        'query' => null,
+                        'fragment' => null,
+                    ],
+                ],
+            ],
+            'last2' => [
+                '/one/two/.?x=1',
+                [
+                    'path' => '/one/two/./?x=1',
+                    'type' => 'url',
+                    'subType' => null,
+                    'isAbsolute' => true,
+                    'root' => '/',
+                    'rel' => 'one/two/./',
+                    'dirName' => '/one/two/.',
+                    'fileName' => null,
+                    'baseName' => null,
+                    'ext' => null,
+                    'dirs' => ['one', 'two', '.'],
+                    'params' => [
+                        'scheme' => null,
+                        'authority' => null,
+                        'query' => 'x=1',
+                        'fragment' => null,
+                    ],
+                ],
+            ],
         ];
     }
 

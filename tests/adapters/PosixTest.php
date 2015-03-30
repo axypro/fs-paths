@@ -65,7 +65,7 @@ class PosixTest extends Base
             ['/var/www/robots.txt', 'robots.txt'],
             ['/var/www/robots.txt/', null],
             ['./../file.txt', 'file.txt'],
-            ['./..', '..'],
+            ['./..', null],
         ];
     }
 
@@ -80,7 +80,7 @@ class PosixTest extends Base
             ['./../file.txt', false, 'file'],
             ['./../file.', false, 'file'],
             ['./../file', false, 'file'],
-            ['./..', false, '.'],
+            ['./..', false, null],
             ['one.two.three', false, 'one.two'],
             ['one.two.three', 'three', 'one.two'],
             ['one.two.three', 'four', null],

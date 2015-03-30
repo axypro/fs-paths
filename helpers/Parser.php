@@ -15,15 +15,24 @@ class Parser
      * Splits a path to a directory list
      *
      * @param \axy\fs\paths\Base $path
+     * @return bool
      */
     public static function splitDirs($path)
     {
+        $result = false;
         $dirs = explode('/', $path->rel);
         if (empty($dirs)) {
             $path->dirs = [];
             return;
         }
-        $file = array_pop($dirs);
+        $file = $dirs[count($dirs) - 1];
+        if (in_array($file, ['.', '..'])) {
+            $file = '';
+            $path->rel .= '/';
+            $result = true;
+        } else {
+            array_pop($dirs);
+        }
         $path->dirs = $dirs;
         $path->dirName = $path->root.implode('/', $dirs);
         if ($file !== '') {
@@ -35,5 +44,6 @@ class Parser
                 $path->baseName = $path->fileName;
             }
         }
+        return $result;
     }
 }

@@ -34,6 +34,8 @@ class Posix extends Base
             $this->isAbsolute = false;
             $this->rel = $path;
         }
-        Parser::splitDirs($this);
+        if (Parser::splitDirs($this)) {
+            $this->createPath();
+        }
     }
 }

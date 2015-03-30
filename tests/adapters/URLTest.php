@@ -64,7 +64,7 @@ class URLTest extends Base
             ['http://example.loc/folder/file.txt?x=1', 'file.txt'],
             ['http://example.loc/folder/file.txt/?x=1', null],
             ['./../one/two?x', 'two'],
-            ['./..', '..'],
+            ['./..', null],
         ];
     }
 

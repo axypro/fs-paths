@@ -185,6 +185,46 @@ class WindowsTest extends \PHPUnit_Framework_TestCase
                     ],
                 ],
             ],
+            'last' => [
+                'c:\one\two\..',
+                [
+                    'path' => 'c:/one/two/../',
+                    'type' => 'windows',
+                    'subType' => null,
+                    'isAbsolute' => true,
+                    'root' => 'c:/',
+                    'rel' => 'one/two/../',
+                    'dirName' => 'c:/one/two/..',
+                    'fileName' => null,
+                    'baseName' => null,
+                    'ext' => null,
+                    'dirs' => ['one', 'two', '..'],
+                    'params' => [
+                        'disc' => 'c',
+                        'server' => null,
+                    ],
+                ],
+            ],
+            'last2' => [
+                'd:\one\two\.',
+                [
+                    'path' => 'd:/one/two/./',
+                    'type' => 'windows',
+                    'subType' => null,
+                    'isAbsolute' => true,
+                    'root' => 'd:/',
+                    'rel' => 'one/two/./',
+                    'dirName' => 'd:/one/two/.',
+                    'fileName' => null,
+                    'baseName' => null,
+                    'ext' => null,
+                    'dirs' => ['one', 'two', '.'],
+                    'params' => [
+                        'disc' => 'd',
+                        'server' => null,
+                    ],
+                ],
+            ],
         ];
     }
 
