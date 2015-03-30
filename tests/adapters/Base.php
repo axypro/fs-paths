@@ -106,4 +106,17 @@ abstract class Base extends \PHPUnit_Framework_TestCase
     }
 
     abstract public function providerGetDirs();
+
+    /**
+     * covers ::normalize
+     * @dataProvider providerNormalize
+     * @param string $path
+     * @param bool $expected
+     */
+    public function testNormalize($path, $expected)
+    {
+        $this->assertSame($expected, $this->adapter->normalize($path));
+    }
+
+    abstract public function providerNormalize();
 }

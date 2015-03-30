@@ -101,4 +101,15 @@ abstract class Base
     {
         return $this->create($path)->subType;
     }
+
+    /**
+     * Normalizes a path
+     *
+     * @param string $path
+     * @return string
+     */
+    public function normalize($path)
+    {
+        return $this->create($path)->resolve();
+    }
 }

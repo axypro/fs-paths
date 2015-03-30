@@ -128,4 +128,17 @@ class WindowsTest extends Base
         $this->assertNull($this->adapter->getSubType('.\..\dir\file.ext'));
         $this->assertSame('server', $this->adapter->getSubType('\\\\ServerName\share\file'));
     }
+
+    /**
+     * @return array
+     */
+    public function providerNormalize()
+    {
+        return [
+            ['c:\one\two', 'c:/one/two'],
+            ['\one\two\..\three\.\four\\', '/one/three/four/'],
+            ['\\\\Server\one\..\..\..\two', '//Server/two'],
+            ['one\..\..\..\two', '../../two'],
+        ];
+    }
 }

@@ -110,4 +110,16 @@ class URLTest extends Base
             ['', []],
         ];
     }
+
+    /**
+     * @return array
+     */
+    public function providerNormalize()
+    {
+        return [
+            ['http://example.loc:80/one/two?x=1#h1', 'http://example.loc:80/one/two?x=1#h1'],
+            ['http://example.loc:80/one/two/../three/./?x=1#h1', 'http://example.loc:80/one/three/?x=1#h1'],
+            ['one/../../../two', '../../two'],
+        ];
+    }
 }

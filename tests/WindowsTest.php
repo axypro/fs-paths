@@ -260,6 +260,11 @@ class WindowsTest extends \PHPUnit_Framework_TestCase
                 '\one\two\three',
                 '/file',
             ],
+            'server' => [
+                'folder',
+                '\\\\ServerName\share\\',
+                '//ServerName/share/folder',
+            ],
         ];
     }
 }

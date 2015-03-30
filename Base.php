@@ -153,6 +153,7 @@ abstract class Base
         }
         $base = $this->createBase($base);
         $base->normalize();
+        $this->subType = $base->subType;
         $this->root = $base->root;
         $this->isAbsolute = $base->isAbsolute;
         $this->loadDirs(Resolver::resolve($base->dirs, $this->dirs, $base->isAbsolute));
