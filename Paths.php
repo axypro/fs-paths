@@ -162,6 +162,17 @@ class Paths
     }
 
     /**
+     * Normalizes a path
+     *
+     * @param string $path
+     * @return string
+     */
+    public static function normalize($path)
+    {
+        return self::getAdapter()->normalize($path);
+    }
+
+    /**
      * Cache of adapters (type => implementation)
      *
      * @var \axy\fs\paths\adapters\Base[]

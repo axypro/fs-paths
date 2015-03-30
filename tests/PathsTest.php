@@ -90,4 +90,12 @@ class PathsTest extends \PHPUnit_Framework_TestCase
         $this->assertSame(['.', '..', 'dir'], Paths::getDirs('./../dir/file.txt'));
         $this->assertNull(Paths::getSubType('file.txt'));
     }
+
+    /**
+     * covers ::normalize
+     */
+    public function testNormalize()
+    {
+        $this->assertSame('/one/three/four', Paths::normalize('/one/two/../three/./four'));
+    }
 }
