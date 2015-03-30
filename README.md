@@ -23,6 +23,7 @@ No requests to the real file system.
 
 * [Supported types of file systems](doc/types.md)
 * [Static, adapter, path instance](doc/features.md)
+* [File Name and Directory Name](doc/dirname.md)
 * [Paths Class](Paths.md)
 * [Adapters](adapters.md)
 * [path instance](path.md)
