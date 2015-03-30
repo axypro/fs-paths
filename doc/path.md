@@ -190,3 +190,65 @@ NULL should be distinguished from the empty string:
 * `/folder/file.html` - `query` is NULL
 * `/folder/file.html?` - `query` is empty string
 
+## Normalize and Resolve
+
+See [algorithms of resolving and normalization](doc/resolve.md) for details.
+
+### `resolve([$base]):string`
+
+The current object acts as a relative path.
+Normalizes and resolves relative to `$base`.
+Changes the fields of the current object and returns the string path.
+
+```php
+$path = Paths::create('./../');
+
+echo $path->resolve('/one/two/three/'); // "/one/two/"
+
+$path->isAbsolute; // True
+$path->dirs; // ["one", "two"]
+```
+
+The argument `$base` can be a string or a path instance.
+
+If the argument is not specified the path normalizes only.
+
+```php
+$path = Paths::create('one/two/..');
+
+echo $path->resolve(); // "one/"
+
+$path->dirs; // ["one"]
+```
+
+### `baseResolve($relative [, $clone = true]):Path`
+
+Similarly `resolve()`, but now the current object is the basic path.
+Returns an instance of resulting object.
+
+```php
+$base = Paths::create('/basic/path/');
+
+$result = $base->baseResolve('./../');
+
+echo $result->path; // "/basic"
+```
+
+The argument `$relative` can be a string or a path instance.
+
+If `$relative` is object then by default it will be cloned and this action does not affect its.
+If specified the argument `$clone` as `FALSE` then `$relative` will be modified.
+
+The current object (the basic path) remains the same, but can be normalized.
+
+## String Representation
+
+`__toString()` returns the `path` property.
+
+```php
+$path = Paths::create('/path/to/file');
+
+echo $path->path; // "/path/to/file"
+echo $path; // "/path/to/file"
+```
+

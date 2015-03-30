@@ -26,7 +26,8 @@ No requests to the real file system.
 * [File Name and Directory Name](doc/dirname.md)
 * [Paths Class](doc/Paths.md)
 * [Adapters](doc/adapters.md)
-* [path instance](doc/path.md)
+* [Path Instance](doc/path.md)
+* [Algorithms of Resolving and Normalization](doc/resolve.md)
 
 ## Examples
 

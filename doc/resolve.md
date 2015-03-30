@@ -1,4 +1,4 @@
-# Algorithms for Resolving and Normalization
+# Algorithms of Resolving and Normalization
 
 ## Normalization
 
