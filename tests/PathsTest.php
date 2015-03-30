@@ -96,6 +96,14 @@ class PathsTest extends \PHPUnit_Framework_TestCase
      */
     public function testNormalize()
     {
-        $this->assertSame('/one/three/four', Paths::normalize('/one/two/../three/./four'));
+        $this->assertSame('one/three/four', Paths::normalize('one/two/../three/./four'));
+    }
+
+    /**
+     * covers ::resolve
+     */
+    public function testResolve()
+    {
+        $this->assertSame('one/three', Paths::resolve('one/two/', '../three'));
     }
 }

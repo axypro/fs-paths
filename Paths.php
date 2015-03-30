@@ -173,6 +173,18 @@ class Paths
     }
 
     /**
+     * Resolves a path relative a basic path
+     *
+     * @param string $base
+     * @param string $relative
+     * @return string
+     */
+    public static function resolve($base, $relative)
+    {
+        return self::getAdapter()->resolve($base, $relative);
+    }
+
+    /**
      * Cache of adapters (type => implementation)
      *
      * @var \axy\fs\paths\adapters\Base[]
