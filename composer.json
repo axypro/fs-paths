@@ -25,5 +25,8 @@
         "psr-4": {
             "axy\\fs\\paths\\": ""
         }
+    },
+    "archive": {
+        "exclude": ["/tests/*", "/doc/*", "/cs.sh", "/phpmd.sh", "/*.xml.dist", "/CHANGELOG.md"]
     }
 }
