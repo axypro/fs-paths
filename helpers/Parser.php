@@ -23,7 +23,7 @@ class Parser
         $dirs = explode('/', $path->rel);
         if (empty($dirs)) {
             $path->dirs = [];
-            return;
+            return false;
         }
         $file = $dirs[count($dirs) - 1];
         if (in_array($file, ['.', '..'])) {
