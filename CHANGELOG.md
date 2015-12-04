@@ -1,3 +1,7 @@
+### dev-master
+
+* Travis
+
 ### 0.1.1 (23.11.2015)
 
 * Some fixes and refactoring

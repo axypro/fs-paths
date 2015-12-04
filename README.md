@@ -1,4 +1,8 @@
-# axy\sourcemap
+# axy\fs-paths
+
+[![Latest Stable Version](https://img.shields.io/packagist/v/axy/fs-paths.svg?style=flat-square)](https://packagist.org/packages/axy/fs-paths)
+[![Minimum PHP Version](https://img.shields.io/badge/php-%3E%3D%205.4-8892BF.svg?style=flat-square)](https://php.net/)
+[![Build Status](https://img.shields.io/travis/axypro/fs-paths/master.svg?style=flat-square)](https://travis-ci.org/axypro/fs-paths)
 
 Manipulation of the file system paths.
 
