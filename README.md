@@ -9,7 +9,7 @@ Manipulation of the file system paths.
 [![License](https://poser.pugx.org/axy/fs-paths/license)](LICENSE)
 
 * The library does not require any dependencies (except composer packages).
-* Tested on PHP 5.4+, PHP 7, HHVM (on Linux).
+* Tested on PHP 5.4+, PHP 7, HHVM (on Linux), PHP 5.5 (on Windows).
 * Install: `composer require axy/fs-paths`.
 * License: [MIT](LICENSE).
 
